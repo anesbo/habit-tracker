@@ -32,3 +32,4 @@ npm run preview
 ## Data
 - Data is stored locally in the browser.
 - You can export everything as JSON from the app settings.
+https://habit-tracker-cs5v.vercel.app/
