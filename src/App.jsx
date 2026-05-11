@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, BarChart, Bar, LineChart, Line, CartesianGrid, PieChart, Pie, Cell } from 'recharts';
 import { seedHabits, seedLogs, seedNotes } from './data/seed';
+import { uploadCloudBackup, downloadCloudBackup } from './lib/cloudBackup'
 
 const STORAGE_KEY = 'habitboard-react-v2';
 const defaultTheme = {
@@ -316,6 +317,29 @@ function App() {
   }
 
 
+  async function handleCloudSave() {
+  try {
+    await uploadCloudBackup(state)
+    alert('Saved to Supabase successfully.')
+  } catch (error) {
+    console.error(error)
+    alert('Cloud save failed.')
+  }
+}
+
+async function handleCloudLoad() {
+  try {
+    const cloudState = await downloadCloudBackup()
+    setState(cloudState)
+    alert('Loaded from Supabase successfully.')
+  } catch (error) {
+    console.error(error)
+    alert('Cloud load failed.')
+  }
+}
+
+
+
   return (
     <div className="sheet-shell">
       <aside className="left-rail">
@@ -579,6 +603,7 @@ function App() {
                 ))}
               </div>
             </div>
+            
 
             <div className="panel-box settings-box">
               <div className="panel-title">JSON Export / Import</div>
@@ -586,6 +611,7 @@ function App() {
               <button className="accent-btn" onClick={exportJson}>Export JSON File</button>
               <textarea placeholder="Paste exported JSON here to import..." value={importText} onChange={e => setImportText(e.target.value)} />
               <button onClick={importJson}>Import JSON</button>
+              
             </div>
 
             <div className="panel-box settings-box">
@@ -595,6 +621,8 @@ function App() {
                 <li>The theme is fully customizable from settings.</li>
                 <li>Your information stays exportable as JSON at any time.</li>
               </ul>
+              <button onClick={handleCloudSave}>Save to Cloud</button>
+              <button onClick={handleCloudLoad}>Load from Cloud</button>
             </div>
           </section>
         )}

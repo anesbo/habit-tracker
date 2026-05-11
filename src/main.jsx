@@ -1,4 +1,5 @@
 import React from 'react'
+import { uploadCloudBackup, downloadCloudBackup } from './lib/cloudBackup'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import './styles.css'

@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.105.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "recharts": "^2.15.4"
@@ -16,7 +17,8 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.4",
     "vite": "^5.4.10"
-  },"engines": {
+  },
+  "engines": {
     "node": "20.x"
   }
 }
