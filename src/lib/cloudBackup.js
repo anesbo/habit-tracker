@@ -3,7 +3,7 @@ import { supabase } from './supabase'
 const BUCKET = 'habit-data'
 const FILE_PATH = 'app-state.json'
 
-export async function saveToCloud(appState) {
+export async function uploadCloudBackup(appState) {
   const blob = new Blob(
     [JSON.stringify(appState, null, 2)],
     { type: 'application/json' }
@@ -20,7 +20,7 @@ export async function saveToCloud(appState) {
   return data
 }
 
-export async function loadFromCloud() {
+export async function downloadCloudBackup() {
   const { data, error } = await supabase.storage
     .from(BUCKET)
     .download(FILE_PATH)
