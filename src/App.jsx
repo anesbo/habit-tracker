@@ -3,6 +3,10 @@ import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, BarChart, 
 import { seedHabits, seedLogs, seedNotes } from './data/seed';
 import { uploadCloudBackup, downloadCloudBackup } from './lib/cloudBackup'
 
+
+
+
+
 const STORAGE_KEY = 'habitboard-react-v2';
 const defaultTheme = {
   name: 'Mono Light',
